@@ -4,11 +4,9 @@ import datetime
 import psycopg2
 import bleach
 
-#DBNAME = "forum"
+
 DBNAME = "news"
-#POSTS = [("This is the first post.", datetime.datetime.now())]
-  
-  
+
 def get_query(q):
     """Connects to the database and returns the results"""
     db = psycopg2.connect(dbname=  DBNAME)
@@ -17,14 +15,12 @@ def get_query(q):
     rows = c.fetchall()
     db.close()
     return rows
-    
-   
 
 if __name__ == '__main__':
-  print('popular three articles:') 
+  print('popular three articles:')
   # make my query
   # What are the most popular three articles of all time?
-  q1=  """SELECT articles.title, COUNT(*) AS num 
+  q1=  """SELECT articles.title, COUNT(*) AS num
         FROM articles
         JOIN log
         ON log.path LIKE CONCAT('/article/%',articles.slug)
@@ -34,12 +30,12 @@ if __name__ == '__main__':
   # Run Query
   results = get_query(q1)#return rows in result
   #print results
-  number = '#' 
+  number = '#'
   i=0;
   for row in results:
     #title = row[0]
     tuple= row
-    print  
+    print
     for j in tuple:
       print j,
     
@@ -55,21 +51,23 @@ if __name__ == '__main__':
       ORDER BY num DESC
       LIMIT 4;"""
   # Run Query
-  results = get_query(q2)#return rows in result 
-  print 
-  print  
+  results = get_query(q2)#return rows in result
+  print
+  print
   print("most popular article authors of all time : ")
   #print results
   for row in results:
     tuple= row
-    print 
+    print
     for j in tuple:
       print j,
 
       
-  q3 =""" SELECT status_table.day, ROUND(((errors_table.err_requests * 1.0)/status_table.all_requests),3) AS percentage
+  q3 =""" SELECT status_table.day, ROUND(((errors_table.err_requests * 1.0)/status_table.all_requests),3)
+      AS percentage
       FROM
-      (SELECT DATE_TRUNC('day',time)"day", COUNT (*) AS err_requests FROM log WHERE status LIKE '404%' GROUP BY day) AS errors_table
+      (SELECT DATE_TRUNC('day',time)"day", COUNT (*) AS err_requests FROM log WHERE status LIKE '404%' GROUP BY day)
+      AS errors_table
       JOIN
       (SELECT DATE_TRUNC('day',time)"day",
       COUNT (*)AS all_requests FROM log GROUP BY day ) AS status_table
