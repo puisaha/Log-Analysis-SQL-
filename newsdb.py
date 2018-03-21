@@ -91,3 +91,4 @@ if __name__ == '__main__':
                 print
                 for j in tuple:
                         print j,
+                print ("percent")
