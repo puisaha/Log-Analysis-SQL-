@@ -37,9 +37,10 @@ if __name__ == '__main__':
         for row in results:
             # title = row[0]
                 tuple = row
-        print
-        for j in tuple:
-                print j,
+                print
+                for j in tuple:
+                        print j,
+                print ("views")        
 
         # print(  number   + title  + ' views' )
 
@@ -60,9 +61,11 @@ if __name__ == '__main__':
         # print results
         for row in results:
                 tuple = row
-        print
-        for j in tuple:
-                print j,
+                print
+                for j in tuple:
+                        print j,
+                print ("views")        
+
 
         q3 = """ SELECT status_table.day, ROUND(((errors_table.err_requests * 1.0)/
         status_table.all_requests),3)
@@ -79,10 +82,12 @@ if __name__ == '__main__':
         status_table.all_requests),3)>0.01);"""
 
         results = get_query(q3)
+        print
+        print
         print ("errors are :")
         # print results
         for row in results:
-                        tuple = row
-        print
-        for j in tuple:
-                print j,
+                tuple = row
+                print
+                for j in tuple:
+                        print j,
