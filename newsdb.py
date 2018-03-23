@@ -1,6 +1,6 @@
+#!/usr/bin/env python
 # "Database code" for the DB Forum.
 
-#!/usr/bin/env python
 
 import datetime
 import psycopg2
@@ -65,7 +65,6 @@ if __name__ == '__main__':
                 for j in tuple:
                         print j,
                 print
-
 
         q3 = """ SELECT status_table.day, ROUND(((errors_table.err_requests * 1.0)/
         status_table.all_requests),3)
