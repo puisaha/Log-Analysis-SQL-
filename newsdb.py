@@ -1,5 +1,7 @@
 # "Database code" for the DB Forum.
 
+#!/usr/bin/env python
+
 import datetime
 import psycopg2
 import bleach
@@ -20,6 +22,7 @@ def get_query(q):
 
 if __name__ == '__main__':
         print('popular three articles:')
+        print
         # make my query
         # What are the most popular three articles of all time?
         q1 = """SELECT articles.title, COUNT(*) AS num
@@ -37,11 +40,9 @@ if __name__ == '__main__':
         for row in results:
             # title = row[0]
                 tuple = row
-                print
                 for j in tuple:
                         print j,
-                print ("views")        
-
+                print
         # print(  number   + title  + ' views' )
 
         q2 = """SELECT authors.name, count(*) AS num
@@ -56,15 +57,14 @@ if __name__ == '__main__':
         # Run Query
         results = get_query(q2)  # return rows in result
         print
-        print
         print("most popular article authors of all time : ")
+        print
         # print results
         for row in results:
                 tuple = row
-                print
                 for j in tuple:
                         print j,
-                print ("views")        
+                print
 
 
         q3 = """ SELECT status_table.day, ROUND(((errors_table.err_requests * 1.0)/
@@ -83,7 +83,6 @@ if __name__ == '__main__':
 
         results = get_query(q3)
         print
-        print
         print ("errors are :")
         # print results
         for row in results:
@@ -91,4 +90,4 @@ if __name__ == '__main__':
                 print
                 for j in tuple:
                         print j,
-                print ("percent")
+                print
